@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Web Developer Express 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scratch.MVC", "Scratch.MVC\Scratch.MVC.csproj", "{D9102E18-7C6E-472D-905A-55117D82E392}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scratch.Tests", "Scratch.Tests\Scratch.Tests.csproj", "{77C1F484-798B-47C2-9DA4-4B3F1488F865}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D9102E18-7C6E-472D-905A-55117D82E392}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9102E18-7C6E-472D-905A-55117D82E392}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9102E18-7C6E-472D-905A-55117D82E392}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9102E18-7C6E-472D-905A-55117D82E392}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77C1F484-798B-47C2-9DA4-4B3F1488F865}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77C1F484-798B-47C2-9DA4-4B3F1488F865}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77C1F484-798B-47C2-9DA4-4B3F1488F865}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77C1F484-798B-47C2-9DA4-4B3F1488F865}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
