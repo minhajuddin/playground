@@ -66,11 +66,15 @@
     </Compile>
     <Compile Include="ModelBinders\DateTimeModelBinder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewEngines\SimpleView.cs" />
+    <Compile Include="ViewEngines\SimpleViewEngine.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Views\Home\SelectDate.aspx" />
+    <Content Include="Views\Home\SV.simple" />
+    <Content Include="Views\Home\TestError.aspx" />
     <Content Include="Web.config" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\jquery-1.3.2.js" />

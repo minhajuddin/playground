@@ -1,0 +1,11 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>{message}</title>
+</head>
+<body>
+  <div>
+    <h1>
+      {message}</h1>
+  </div>
+</body>
+</html>

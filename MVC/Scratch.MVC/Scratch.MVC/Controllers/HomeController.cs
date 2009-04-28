@@ -26,5 +26,25 @@ namespace Scratch.MVC.Controllers {
             ViewData["IpDate"] = ipDate;
             return View();
         }
+
+        public ActionResult ReturnTestError() {
+            ModelState.AddModelError("_FORM", "This is some error");
+            return View("TestError");
+        }
+
+        public ActionResult RedirectToTestError() {
+            ModelState.AddModelError("_FORM", "This is some error");
+            return RedirectToAction("TestError");
+        }
+
+        public ActionResult TestError() {
+            return View();
+        }
+
+        //actions which use the SimpleViewEngine
+        public ActionResult SV() {
+            ViewData["message"] = "Hey there, We are using the Simple View Engine";
+            return View();
+        }
     }
 }

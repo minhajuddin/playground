@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Scratch.MVC.Binders;
+using Scratch.MVC.ViewEngine;
 
 namespace Scratch.MVC {
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
@@ -25,9 +26,10 @@ namespace Scratch.MVC {
         protected void Application_Start() {
             RegisterRoutes(RouteTable.Routes);
 
+            ViewEngines.Engines.Add(new SimpleViewEngine());
             //Register the model binders
             //ModelBinders.Binders[typeof(DateTime)] = new DateTimeModelBinder();
-            ModelBinders.Binders.Add(typeof(DateTime), new DateTimeModelBinder());
+            //ModelBinders.Binders.Add(typeof(DateTime), new DateTimeModelBinder());
         }
     }
 }
