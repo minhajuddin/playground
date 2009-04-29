@@ -1,6 +1,7 @@
 //Load all the markers on the map
 //Markers need to have a time variable which holds the hour from timestamp
 markerManager=(function(markers){
+	me = markerManager;
 	return {
 		me:this,
 		prevMin:0,
