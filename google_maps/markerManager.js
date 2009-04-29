@@ -1,16 +1,16 @@
 //Load all the markers on the map
 //Markers need to have a time variable which holds the hour from timestamp
 markerManager=(function(markers){
-	me = markerManager;
 	return {
-		me:this,
 		prevMin:0,
 		prevMax:100,
+		slider:null,
+		AVL:null,
 		/*markers:markers,*/
 		removeMarkers : function(min, max){
 	  			console.log('removing markers %s => %s',min,max);
 	  			for(var i = min; i < max; i++){
-	  				map.removeOverlay(me.markers[i]);
+	  				map.removeOverlay(this.AVL.markers[i]);
 	  				console.log("marker removed %s ", i);
   				}
   				console.log('removed markers %s => %s',min,max);
@@ -18,10 +18,12 @@ markerManager=(function(markers){
   		addMarkers : function(min, max){
   				console.log('adding markers %s to %s',min,max);
 	  			for(var i = min; i < max; i++){
-	  				map.addOverlay(me.markers[i]);
+	  				map.addOverlay(this.AVL.markers[i]);
   				}
 		},
-		sliderChangeHandler:function( event, ui ){
+		sliderChangeHandler:function( slider, AVL /* Marker holder */ ){
+			this.slider = slider;
+			this.AVL = AVL;
 		//Slider Value Change function algorithm
 			//Check if min/max changed
 			// if min !== prevMin
@@ -38,32 +40,32 @@ markerManager=(function(markers){
 					//	add markers from prevMax => max
 			//set the values of prevMin and prevMax
 		
-			var min = $(this).slider('values',0);
-			var max = $(this).slider('values',1);
-			var prevMin = me.prevMin;
-			var prevMax = me.prevMax;
+			var min = $(slider).slider('values',0);
+			var max = $(slider).slider('values',1);
+			var prevMin = this.prevMin;
+			var prevMax = this.prevMax;
 			
 			if( min !== prevMin ){
 				if( min < prevMin ){
-					addMarkers( min, prevMin );
+					this.addMarkers( min, prevMin );
 					console.log("add markers from %s => %s ", min, prevMin );
 				} else {
-					removeMarkers( prevMin, min );
+					this.removeMarkers( prevMin, min );
 					console.log("remove markers from %s => %s ", prevMin, min );
 				}
 			}
 			else if( max !== prevMax ){
 				if( max < prevMax ){
-					removeMarkers( max, prevMax );
+					this.removeMarkers( max, prevMax );
 					console.log("remove markers from %s => %s ", max, prevMax );
 				} else {
-					addMarkers( prevMax, max );
+					this.addMarkers( prevMax, max );
 					console.log("add markers from %s => %s ", prevMax, max );
 				}
 			}
 		
-			me.prevMin = min;
-			me.prevMax = max;
+			this.prevMin = min;
+			this.prevMax = max;
 		}
 	};
 	}());

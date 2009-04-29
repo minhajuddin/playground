@@ -14,7 +14,10 @@
 	  <script src="markerManager.js" type="text/javascript" charset="utf-8"></script>
 	  <script type='text/javascript'>
 	  	$(function(){
-	  		$("#slider").slider({animate:true, max:100, min:0, orientation:"vertical",step:1,range:true,values:[0,100],change:markerManager.sliderChangeHandler});
+	  		$("#slider").slider({animate:true, max:100, min:0, orientation:"vertical",step:1,range:true,values:[0,100],
+	  		change:function(event, ui){
+	  				markerManager.sliderChangeHandler(this /* slider */, window /* object which holds markers */ );
+	  			}});
 	  	});
 	  </script>
 	  <script type='text/javascript'>
