@@ -11,56 +11,10 @@
 	  <script src="../jquery/jquery-ui-1.7.1.custom.min.js" type="text/javascript" charset="utf-8"></script>
 	  <script src="http://maps.google.com/maps?file=api&amp;v=2.x&amp;sensor=false&amp;key=ABQIAAAAEiesRK4cgYgqReucI6FjnBTqKMF2dWeBSfR2CrqDpRylDLn7HhRS5xfCO_2VcN5ihELNuRuRHvOJxg"
     type="text/javascript"></script>
+	  <script src="markerManager.js" type="text/javascript" charset="utf-8"></script>
 	  <script type='text/javascript'>
 	  	$(function(){
-	  		var prevMin = 0;
-	  		var prevMax = 0;
-	  		var removeMarkers = function(min, max){
-	  			//console.log('removing markers %s to %s',min,max);
-	  			for(var i = min; i < max; min++){
-	  				map.removeOverlay(markers[i]);
-  				}
-  			};
-  			var addMarkers = function(min, max){
-  				//console.log('adding markers %s to %s',min,max);
-	  			for(var i = min; i < max; min++){
-	  				map.addOverlay(markers[i]);
-  				}
-  			};
-
-	  		var sliderValueChanged=function(event, ui){
-				var min = $(this).slider('values',0);
-				var max = $(this).slider('values',1);
-				//console.log("Min %s Max %s Diff %s", min, max, (+max) - (+min));
-				
-				//clear map and add points in the range
-				//map.clearOverlays();
-				//for(var i = first; i < second; i++){
-				//	map.addOverlay(markers[i]);
-				//}
-				//if min is greater than previous min remove markers else add
-				if(min > prevMin){
-					removeMarkers(prevMin,min);
-				} else if(min < prevMin){
-					addMarkers(min,prevMin);
-				}
-				prevMin = min;
-				//if max less than previous max remove markers else add
-				if(max < prevMax){
-					removeMarkers(max,prevMax);
-				} else if(max > prevMax){
-					addMarkers(prevMax,max);
-				}
-				prevMax = max;
-			};
-	  		$("#slider").slider({animate:true, 
-								max:100, 
-								min:0, 
-								orientation:"vertical",
-								step:1,
-								range:true,
-								values:[0,100],
-								change:sliderValueChanged});
+	  		$("#slider").slider({animate:true, max:100, min:0, orientation:"vertical",step:1,range:true,values:[0,100],change:markerManager.sliderChangeHandler});
 	  	});
 	  </script>
 	  <script type='text/javascript'>
@@ -75,11 +29,11 @@
             map.enableScrollWheelZoom();
             map.addControl(new GLargeMapControl(), new GControlPosition(G_ANCHOR_TOP_RIGHT, new GSize(20, 40)));
             map.addControl(new GOverviewMapControl());
-            map.setCenter(new GLatLng(17.379255333646373, 78.47341919783503), 11 );
-	  		//console.log("finished loading map");
+            map.setCenter(new GLatLng(17.379255333646373, 78.47341919783503), 12 );
+	  		console.log("finished loading map");
 	  		//code to convert points into an array of markers
 	  		
-	  		for( var i = 0; i < 100; i++){
+	  		for( var i = 0; i < points.length; i++){
 	  			markers.push(new GMarker(new GLatLng(points[i].Latitude, points[i].Longitude)));
 	  		}
 	  		//set the center to the first point
