@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using Scratch.MVC.Models;
 
 namespace Scratch.MVC.Controllers {
     [HandleError]
@@ -33,11 +31,15 @@ namespace Scratch.MVC.Controllers {
         }
 
         public ActionResult RedirectToTestError() {
-            ModelState.AddModelError("_FORM", "This is some error");
+            //ModelState.AddModelError("_FORM", "This is some error");
+            TempData["_ERROR"] = "Here is some error";
             return RedirectToAction("TestError");
         }
 
         public ActionResult TestError() {
+            if (TempData.ContainsKey("_ERROR")) {
+                ModelState.AddModelError("_FORM", TempData["_ERROR"].ToString());
+            }
             return View();
         }
 
@@ -45,6 +47,23 @@ namespace Scratch.MVC.Controllers {
         public ActionResult SV() {
             ViewData["message"] = "Hey there, We are using the Simple View Engine";
             return View();
+        }
+
+        //Unit testing actions  
+        public ActionResult DayTime(int hour) {
+
+            Time time = new Time { Hour = hour };
+            if (hour <= 6 || hour >= 20) {
+                return View("NightTimeView", time);
+            }
+            if (hour > 6 && hour < 20) {
+                return View("DayTimeView", time);
+            }
+            return View("Index");
+        }
+
+        public ActionResult Redirect() {
+            return RedirectToAction("Index");
         }
     }
 }
