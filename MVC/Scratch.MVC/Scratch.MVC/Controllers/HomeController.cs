@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
 using Scratch.MVC.Models;
+using Scratch.MVC.ModelBinders;
 
 namespace Scratch.MVC.Controllers {
     [HandleError]
@@ -48,6 +49,18 @@ namespace Scratch.MVC.Controllers {
             ViewData["message"] = "Hey there, We are using the Simple View Engine";
             return View();
         }
+
+
+        //Second take on model binders
+        public ActionResult PostRecipe() {
+            return View();
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult PostRecipe(Recipe ipRecipe) {
+            return View("DisplayRecipe", ipRecipe);
+        }
+
 
         //Unit testing actions  
         public ActionResult DayTime(int hour) {

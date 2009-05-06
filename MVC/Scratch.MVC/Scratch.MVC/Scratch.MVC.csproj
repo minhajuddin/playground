@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="ModelBinders\RecipeModelBinder.cs" />
     <Compile Include="Models\Time.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -73,6 +74,7 @@
   <ItemGroup>
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Views\Home\PostRecipe.aspx" />
     <Content Include="Views\Home\SelectDate.aspx" />
     <Content Include="Views\Home\SV.simple" />
     <Content Include="Views\Home\TestError.aspx" />
