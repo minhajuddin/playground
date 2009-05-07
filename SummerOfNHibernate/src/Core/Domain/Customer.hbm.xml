@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="Core" namespace="Core.Domain">
+  <class name="Core.Domain.Customer,Core" table="Customers">
+    <id name="ID" column="ID" type="int" unsaved-value="0">
+      <generator class="native" />
+    </id>
+    <property name="FirstName" column="FirstName" type="string" not-null="false" />
+    <property name="LastName" column="LastName" type="string" not-null="false" />
+  </class>
+</hibernate-mapping>
