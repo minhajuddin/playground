@@ -73,6 +73,16 @@ namespace Core.DataAccess {
 
         }
 
+        //Query By Example methods
+        public IList<Customer> GetCustomersByExample(Customer customer) {
+            ISession session = GetSession();
+            var customers = session.CreateCriteria<Customer>()
+                .Add(Example.Create(customer))
+                .List<Customer>();
+
+            return customers;
+        }
+
         //Helper methods
         private static ISession GetSession() {
             ISessionFactory sessionFactory = (new Configuration()).Configure().BuildSessionFactory();

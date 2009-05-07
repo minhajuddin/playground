@@ -92,5 +92,33 @@ namespace UnitTests.DataAccess {
             }
             Assert.IsTrue(customers.Count > 0);
         }
+
+        //QBE Tests
+        [Test]
+        public void CanGetCustomersByExample() {
+            var ipCustomer = new Customer { FirstName = "Khaja" };
+            var customers = _repo.GetCustomersByExample(ipCustomer);
+
+            Assert.IsNotNull(customers);
+            Assert.IsInstanceOfType(typeof(IList<Customer>), customers);
+            foreach (var cust in customers) {
+                Assert.AreEqual("Khaja", cust.FirstName, StringComparison.OrdinalIgnoreCase);
+            }
+            Assert.IsTrue(customers.Count > 0);
+        }
+
+        [Test]
+        public void CanGetCustomersByExampleWithFirstNameAndLastName() {
+            var ipCustomer = new Customer { FirstName = "Khaja", LastName = "Minhajuddin" };
+            var customers = _repo.GetCustomersByExample(ipCustomer);
+
+            Assert.IsNotNull(customers);
+            Assert.IsInstanceOfType(typeof(IList<Customer>), customers);
+            foreach (var cust in customers) {
+                Assert.AreEqual("Khaja", cust.FirstName, StringComparison.OrdinalIgnoreCase);
+                Assert.AreEqual("Minhajuddin", cust.LastName, StringComparison.OrdinalIgnoreCase);
+            }
+            Assert.IsTrue(customers.Count > 0);
+        }
     }
 }
