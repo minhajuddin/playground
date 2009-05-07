@@ -2,6 +2,7 @@ using MbUnit.Framework;
 using Core.DataAccess;
 using Core.Domain;
 using System.Collections.Generic;
+using System;
 
 namespace UnitTests.DataAccess {
     [TestFixture]
@@ -26,6 +27,32 @@ namespace UnitTests.DataAccess {
 
             Assert.IsNotNull(customers);
             Assert.IsInstanceOfType(typeof(IList<Customer>), customers);
+            foreach (var cust in customers) {
+                Assert.AreEqual("Khaja", cust.FirstName, StringComparison.OrdinalIgnoreCase);
+            }
+            Assert.IsTrue(customers.Count > 0);
+        }
+
+        [Test]
+        public void GetCustomersByFirstAndLastNameReturnsAnIListOfCustomersWithAMatchingFirstNameAndLastName() {
+            var customers = _repo.GetCustomersByFirstAndLastName("Khaja", "Minhajuddin");
+            Assert.IsNotNull(customers);
+            Assert.IsInstanceOfType(typeof(IList<Customer>), customers);
+            foreach (var cust in customers) {
+                Assert.AreEqual("Khaja", cust.FirstName, StringComparison.OrdinalIgnoreCase);
+                Assert.AreEqual("Minhajuddin", cust.LastName, StringComparison.OrdinalIgnoreCase);
+            }
+            Assert.IsTrue(customers.Count > 0);
+        }
+
+        [Test]
+        public void GetCustomerWithIdGreaterThanReturnsAnIListOfCustomers() {
+            var customers = _repo.GetCustomersWithIdGreaterThan(0);
+            Assert.IsNotNull(customers);
+            Assert.IsInstanceOfType(typeof(IList<Customer>), customers);
+            foreach (var cust in customers) {
+                Assert.IsTrue(0 < cust.ID);
+            }
             Assert.IsTrue(customers.Count > 0);
         }
     }

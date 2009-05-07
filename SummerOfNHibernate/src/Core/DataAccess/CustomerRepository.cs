@@ -14,8 +14,30 @@ namespace Core.DataAccess {
 
         public IList<Customer> GetCustomersByFirstName(string firstName) {
             ISession session = GetSession();
-            var customers = session.CreateQuery("select from Customer c where c.FirstName ='" + firstName + "'").List<Customer>();
+            var customers = session.CreateQuery("select from Customer c where c.FirstName =:firstName")
+                .SetString("firstName", firstName)
+                .List<Customer>();
             return customers;
+        }
+
+
+        public IList<Customer> GetCustomersByFirstAndLastName(string firstName, string lastName) {
+            var session = GetSession();
+            var customers = session.CreateQuery("select from Customer c where c.FirstName = :firstName AND c.LastName = :lastName")
+                .SetString("firstName", firstName)
+                .SetString("lastName", lastName)
+                .List<Customer>();
+            return customers;
+        }
+
+        public IList<Customer> GetCustomersWithIdGreaterThan(int id) {
+            var session = GetSession();
+            var customers = session.CreateQuery("select from Customer c where c.ID > :id")
+                .SetInt32("id", id)
+                .List<Customer>();
+
+            return customers;
+
         }
 
         //Helper methods
@@ -23,6 +45,5 @@ namespace Core.DataAccess {
             ISessionFactory sessionFactory = (new Configuration()).Configure().BuildSessionFactory();
             return sessionFactory.OpenSession();
         }
-
     }
 }
