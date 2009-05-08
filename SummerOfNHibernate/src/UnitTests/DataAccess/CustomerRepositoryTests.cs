@@ -3,6 +3,7 @@ using Core.DataAccess;
 using Core.Domain;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 namespace UnitTests.DataAccess {
     [TestFixture]
@@ -119,6 +120,36 @@ namespace UnitTests.DataAccess {
                 Assert.AreEqual("Minhajuddin", cust.LastName, StringComparison.OrdinalIgnoreCase);
             }
             Assert.IsTrue(customers.Count > 0);
+        }
+
+        [Test]
+        public void CanGetDistinctFirstNames() {
+            var firstNames = _repo.GetDistinctCustomerFirstnames();
+
+            foreach (var fn in firstNames) {
+                Assert.AreEqual(1, firstNames.Count(x => x == fn));
+            }
+        }
+
+        [Test]
+        public void CAPI_CanGetDistinctFirstNames() {
+            var firstNames = _repo.CAPI_GetDistinctCustomerFirstnames();
+
+            foreach (var fn in firstNames) {
+                Assert.AreEqual(1, firstNames.Count(x => x == fn));
+            }
+        }
+
+        [Test]
+        public void CanGetCustomersOrderredByLastName() {
+            var customers = _repo.GetCustomersOrderedByLastName();
+            Customer prevCust = null;
+            foreach (var cust in customers) {
+                if (prevCust != null) {
+                    Assert.GreaterThanOrEqualTo(string.Compare(cust.LastName, prevCust.LastName, true), 0);
+                }
+                prevCust = cust;
+            }
         }
     }
 }
