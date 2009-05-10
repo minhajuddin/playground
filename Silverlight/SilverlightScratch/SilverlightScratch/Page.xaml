@@ -1,23 +1,27 @@
 ﻿<UserControl x:Class="SilverlightScratch.Page"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
-    Width="600" Height="300">
-    <Grid x:Name="LayoutRoot" Background="#FF5C7590">
+    xmlns:data="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Data"
+    >
+    <Grid x:Name="wrapper" Background="#FF5C7590" ShowGridLines="True">
         <Grid.RowDefinitions>
-            <RowDefinition Height="100" />
-            <RowDefinition Height="100" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="250" />
-            <ColumnDefinition Width="250" />
-        </Grid.ColumnDefinitions>
-
-        <Button x:Name="testButton" Content="Push Me!" Height="80" Width="200" Click="testButton_Click" 
-                Grid.Row="1" Grid.Column="0"
-                />
-        <Button x:Name="secondButton" Content="Second Button"  Height="80"  Width="200" 
-                Grid.Row="0" Grid.Column="1"
-                />
+        <Grid x:Name="header" Grid.Row="0" Margin="10" ShowGridLines="True" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="50" />
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="0" CornerRadius="10"  Background="#FFDEDEDE" Margin="0,0,5,0" >
+                <TextBlock x:Name="searchTxtBox" Text="DIGG SEARCH" Foreground="#FF14517B" Margin="10,3,0,0"  />
+            </Border>
+            <TextBox Grid.Column="1" FontSize="14" Text="search.."  />
+            <Button Grid.Column="2" Content="Search" x:Name="searchButton" Click="searchButton_Click" />
+        </Grid>
+        <data:DataGrid x:Name="StoriesList" Grid.Row="1" Margin="5">
+        </data:DataGrid>
     </Grid>
 </UserControl>
