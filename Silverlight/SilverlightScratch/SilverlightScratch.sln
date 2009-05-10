@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Web Developer Express 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SilverlightScratch", "SilverlightScratch\SilverlightScratch.csproj", "{10493E89-BD73-4EB4-A678-A9F0A4F5A4C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SilverlightScratch.Mvc", "SilverlightScratch.Mvc\SilverlightScratch.Mvc.csproj", "{B58FEF97-8D8C-4664-86F5-56957FDAB899}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{10493E89-BD73-4EB4-A678-A9F0A4F5A4C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10493E89-BD73-4EB4-A678-A9F0A4F5A4C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10493E89-BD73-4EB4-A678-A9F0A4F5A4C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10493E89-BD73-4EB4-A678-A9F0A4F5A4C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B58FEF97-8D8C-4664-86F5-56957FDAB899}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B58FEF97-8D8C-4664-86F5-56957FDAB899}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B58FEF97-8D8C-4664-86F5-56957FDAB899}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B58FEF97-8D8C-4664-86F5-56957FDAB899}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
