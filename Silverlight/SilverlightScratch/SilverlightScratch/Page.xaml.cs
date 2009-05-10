@@ -15,9 +15,14 @@ namespace SilverlightScratch {
         public Page() {
             InitializeComponent();
         }
-
+        private bool isClicked = false;
         private void testButton_Click(object sender, RoutedEventArgs e) {
-            testButton.Content = "You pushed Me!";
+            if (isClicked) {
+                testButton.Content = "You pushed Me!";
+                isClicked = false;
+            } else {
+                testButton.Content += " ..";
+            }
         }
     }
 }
