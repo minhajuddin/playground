@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>assertareequal</Title>
+      <Shortcut>aae</Shortcut>
+      <Description>Code snippet to add an Assert Are Equal</Description>
+      <Author>Khaja Minhajuddin</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+        <SnippetType>SurroundsWith</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>expected</ID>
+          <ToolTip>Expected object to be tested</ToolTip>
+          <Default>expected</Default>
+        </Literal>
+        <Literal>
+          <ID>actual</ID>
+          <ToolTip>Actual object to be tested</ToolTip>
+          <Default>actual</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp">
+        <![CDATA[Assert.AreEqual($expected$, $actual$);
+        $selected$ $end$
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
