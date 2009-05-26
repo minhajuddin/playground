@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="jquery-ui-1.7.1.custom.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <script src="jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="jquery-ui-1.7.1.custom.min.js" type="text/javascript" charset="utf-8"></script>
+    
+    <script type='text/javascript'>
+      $(function(){
+        console.log("started");
+        $("#datetime").datepicker();
+        console.log("configured");
+      });
+    </script>
+  </head>
+  <body style="font-size:62.5%;">
+    <input type='input' id='datetime' />
+  </body>
+</html>

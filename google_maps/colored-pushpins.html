@@ -1,0 +1,32 @@
+<html>
+	<head>
+		<script type="text/javascript" src="http://maps.google.com/maps?file=api&amp;v=2.x&amp;sensor=false&amp;key=ABQIAAAAEiesRK4cgYgqReucI6FjnBTdaFQcjthiPnFYRTUa5E4PlkHmvBQTQuUkCS2Wh_NavH-yNWV8DsNsxg"></script>
+		<script type='text/javascript' src='mapiconmaker_packed.js'></script>
+		<script type="text/javascript" src="jquery-1.3.2.min.js"></script>
+		<script type="text/javascript">
+		var map;
+			$(function(){
+				if(GBrowserIsCompatible()){
+					map = new GMap2($("#map_canvas")[0]);
+					map.setCenter(new GLatLng(37.4419, -122.1419),13);
+					
+					var myIcon = MapIconMaker.createMarkerIcon({width: 32, height: 32, primaryColor: "#00ff00"});
+					var otherIcon = MapIconMaker.createMarkerIcon({width: 24, height: 24, primaryColor: "#00ff00"});
+					map.addOverlay(new GMarker(map.getCenter(),{icon:otherIcon}));
+					
+					//click event to add colored push pins
+					GEvent.addListener(map,'click',function(overlay, data){
+            console.log(data.toUrlValue());
+            map.addOverlay(new GMarker(data, {icon:myIcon}));
+					});
+					
+				}
+			});
+		</script>
+	</head>
+	<body onunload="GUnload()">
+		<h2>Colored push pins</h2>
+		<div id="map_canvas" style="height:90%;width:90%;margin:auto;">
+		</div>
+	</body>
+</html>
