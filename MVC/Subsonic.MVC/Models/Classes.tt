@@ -1,0 +1,126 @@
+﻿<#@ template language="C#v3.5" debug="True" hostspecific="True"  #>
+<#@ include file="_SQLServer.tt" #>
+using System;
+using SubSonic.Linq;
+using System.Linq;
+using System.ComponentModel;
+
+
+namespace <#=Namespace#>{
+<#
+
+var tables=LoadTables();
+
+foreach(Table tbl in tables){
+
+	if(!ExcludeTables.Contains(tbl.Name)){
+#>
+
+    /// <summary>
+    /// A class which represents the <#=tbl.Name#> table in the <#=ProviderName#> Database.
+    /// This class is queryable through <#=ProviderName#>.DB.<#=tbl.Name#>
+    /// </summary>
+	public partial class <#=tbl.ClassName#>: INotifyPropertyChanging, INotifyPropertyChanged {
+	    public <#=tbl.ClassName#>(){
+	        OnCreated();
+	    }
+	
+<#			
+		
+		bool setDescriptor=true;
+		foreach(Column col in tbl.Columns){	    
+		    if(col.IsPK){
+#>
+        public string KeyName (){
+            return "<#=col.CleanName#>";
+        }
+        public <#=col.SysType#> KeyValue (){
+            return _<#=col.CleanName#>;
+        }
+<#		    		    
+		    }else if(col.SysType=="string" && setDescriptor){
+#>
+        public string DescriptorValue(){
+            return this.<#=col.CleanName#>;
+        }
+        public string DescriptorColumn() {
+            return "<#=col.CleanName#>";
+        }
+        public override string ToString(){
+            return this.<#=col.CleanName#>;
+        }
+        public static string GetDescriptorColumn() {
+            return "<#=col.CleanName#>";
+        }
+<#		    
+                setDescriptor=false;
+		    }
+#>
+		<#=col.SysType#> _<#=col.CleanName#>;
+		public <#=col.SysType#> <#=col.CleanName#> { 
+		    get{
+		        return _<#=col.CleanName#>;
+		    } 
+		    set{
+		        this.On<#=col.CleanName#>Changing(value);
+                this.SendPropertyChanging();
+                this._<#=col.CleanName#> = value;
+                this.SendPropertyChanged("<#=col.CleanName#>");
+                this.On<#=col.CleanName#>Changed();
+		    }
+		}
+		
+<#		}#>
+
+
+        #region Extensibility Hooks
+        partial void OnLoaded();
+        partial void OnValidate(System.Data.Linq.ChangeAction action);
+        partial void OnCreated();
+<#		foreach(Column col in tbl.Columns){#>
+        partial void On<#=col.CleanName#>Changing(<#=col.SysType#> value);
+        partial void On<#=col.CleanName#>Changed();
+<#      }#>       
+        #endregion
+
+
+        #region Foriegn Keys
+<#
+        List<string> fkCreated=new List<string>();
+        foreach(FKTable fk in tbl.FKTables){
+            
+            
+#>      
+        public IQueryable<<#=fk.OtherClass#>> <#=fk.OtherQueryable#> {
+            get{
+                
+                <#=Namespace#>.DB _db =DB.CreateDB();
+                return from items in _db.<#=fk.OtherQueryable#>
+                       where items.<#=fk.OtherColumn#> == _<#=fk.ThisColumn#>
+                       select items;
+            }
+        }
+
+<#      }#>
+        
+        #endregion
+
+        private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+        public event PropertyChangingEventHandler PropertyChanging;
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void SendPropertyChanging() {
+            if ((this.PropertyChanging != null)) {
+                this.PropertyChanging(this, emptyChangingEventArgs);
+            }
+        }
+
+        protected virtual void SendPropertyChanged(String propertyName) {
+            if ((this.PropertyChanged != null)) {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+	}
+<#	}#>
+<#} #>
+
+}
