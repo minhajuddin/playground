@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Core"
+                   namespace="DimeCastsNhScratch.Core">
+  <class name="Store" table="tbStores">
+    <id name="StoreID" column="id">
+      <generator class="native" />
+    </id>
+    <property name="Name" column="name" length="50" not-null="true" />
+    <property name="AccountingCode" column="acc_code" length="50" not-null="false" />
+  </class>
+</hibernate-mapping>

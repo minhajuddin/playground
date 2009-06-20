@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   namespace="Soh.Data"
+                   assembly="Data">
+  <class name="Customer" table="Customers">
+    <id name="CustomerId" column="Id">
+      <generator class="native" />
+    </id>
+    <property name="FirstName" length="50" not-null="true" />
+    <property name="LastName" length="50" not-null="true" />
+  </class>
+</hibernate-mapping>

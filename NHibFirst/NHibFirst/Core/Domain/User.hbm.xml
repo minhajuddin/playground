@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   namespace="NHibFirst.Core.Domain"
+                   assembly="NHibFirst">
+  <class name="User" table="users">
+    <id name="Id" column="id">
+      <generator class="native" />
+    </id>
+    <property name="UserName" column="username" length="50" not-null="true" />
+    <property name="FullName" column="full_name" length="50" not-null="true" />
+    <property name="LastLogin" column="last_login" not-null="true" />
+    <property name="CreatedOn" column="created_on" not-null="true" />
+    <!--<property name="CreatedBy" column="created_by" not-null="true" />-->
+    <many-to-one name="CreatedBy" class="User" column="created_by" cascade="save-update" />
+    <many-to-one name="Role" class="Role" column="role_id" cascade="save-update" />
+  </class>
+</hibernate-mapping>

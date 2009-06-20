@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Core"
+                   namespace="DimeCastsNhScratch.Core">
+  <class name="Customer" table="tbCustomers">
+    <id name="CustomerID" column="id">
+      <generator class="native" />
+    </id>
+
+    <property name="FirstName" column ="first_name" length="50" not-null="true" />
+    <property name="LastName" column ="last_name" length="50" not-null="true" />
+    <property name="CreatedDate" column="created_date" not-null="true" />
+    <many-to-one name="Store" class="Store" column="store_id" cascade="save-update" />
+
+    <bag name="Orders" cascade="all-delete-orphan" inverse="true" order-by="order_date">
+      <key column="customer_id" />
+      <one-to-many class="Order"/>
+    </bag>
+
+  </class>
+</hibernate-mapping>

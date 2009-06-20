@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   namespace="NHibFirst.Core.Domain"
+                   assembly="NHibFirst">
+  <class name="Role" table="roles">
+    <id name="Id" column="id">
+      <generator class="native" />
+    </id>
+    <property name="Name" column="name" length="50" not-null="true" />
+    <property name="Description" column="description" length="50" not-null="true" />
+    <bag name="UsersInRole" table="users"  order-by="id">
+      <key column="role_id" />
+      <one-to-many class="User"/>
+    </bag>
+  </class>
+</hibernate-mapping>
